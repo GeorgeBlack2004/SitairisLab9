@@ -1,0 +1,21 @@
+<project name="MyAntProject" default="run" basedir=".">
+    <property name="src.dir" value="src"/>
+    <property name="bin.dir" value="bin"/>
+
+    <target name="clean">
+        <delete dir="${bin.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${bin.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${bin.dir}"/>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="org.example.Main" fork="true" failonerror="true">
+            <classpath>
+                <pathelement path="${bin.dir}"/>
+            </classpath>
+        </java>
+    </target>
+</project>
